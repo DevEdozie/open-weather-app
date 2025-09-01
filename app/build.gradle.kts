@@ -117,7 +117,7 @@ dependencies {
     testImplementation("org.mockito.kotlin:mockito-kotlin:6.0.0")
 
 // --- HTTP layer ---
-    testImplementation("com.squareup.okhttp3:mockwebserver:5.1.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 
 // --- Robolectric (for DataStore tests on JVM) ---
     testImplementation("org.robolectric:robolectric:4.16")

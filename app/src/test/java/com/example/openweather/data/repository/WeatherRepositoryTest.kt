@@ -39,30 +39,37 @@ class WeatherRepositoryTest {
     @Test
     fun `getWeatherForCity returns parsed WeatherResponse`() = runTest {
         val body = """
-            {
-              "name": "Lagos",
-              "weather": [{"description":"overcast clouds"}],
-              "main": {"temp": 22.85, "feels_like": 23.65, "humidity": 94},
-              "wind": {"speed": 1.87, "deg": 207},
-              "clouds": {"all": 92}
-            }
-        """.trimIndent()
+        {
+          "name": "Lagos",
+          "weather": [{"description":"overcast clouds"}],
+          "main": {"temp": 22.85, "feels_like": 23.65, "humidity": 94},
+          "wind": {"speed": 1.87, "deg": 207},
+          "clouds": {"all": 92}
+        }
+    """.trimIndent()
         server.enqueue(MockResponse().setResponseCode(200).setBody(body))
 
         val result: WeatherResponse = repo.getWeatherForCity("Lagos,NG", "TEST_KEY")
 
         val recorded = server.takeRequest()
-        assertThat(recorded.path).startsWith("/data/2.5/weather")
-        assertThat(recorded.path).contains("q=Lagos,NG")
-        assertThat(recorded.path).contains("appid=TEST_KEY")
-        assertThat(recorded.path).contains("units=metric") // defaulted by interface
 
+        // endpoint path
+        assertThat(recorded.requestUrl!!.encodedPath).isEqualTo("/data/2.5/weather")
+
+        // decoded query params
+        val url = recorded.requestUrl!!
+        assertThat(url.queryParameter("q")).isEqualTo("Lagos,NG")
+        assertThat(url.queryParameter("appid")).isEqualTo("TEST_KEY")
+        assertThat(url.queryParameter("units")).isEqualTo("metric")
+
+        // response parsing
         assertThat(result.name).isEqualTo("Lagos")
         assertThat(result.weather.first().description).isEqualTo("overcast clouds")
         assertThat(result.main.humidity).isEqualTo(94)
         assertThat(result.wind.deg).isEqualTo(207)
         assertThat(result.clouds.all).isEqualTo(92)
     }
+
 
     @Test(expected = HttpException::class)
     fun `getWeatherForCity throws on non-2xx`() = runTest {
