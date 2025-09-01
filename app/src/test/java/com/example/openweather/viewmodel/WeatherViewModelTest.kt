@@ -14,13 +14,16 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doSuspendableAnswer
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import org.robolectric.RobolectricTestRunner
 import retrofit2.HttpException
 import retrofit2.Response
 
+@RunWith(RobolectricTestRunner::class)
 class WeatherViewModelTest {
 
     @get:Rule val mainRule = MainDispatcherRule()
