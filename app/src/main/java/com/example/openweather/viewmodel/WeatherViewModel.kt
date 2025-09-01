@@ -33,7 +33,7 @@ class WeatherViewModel @Inject constructor(
     init {
         // Retrieve API key from DataStore
         viewModelScope.launch {
-            apiKey = AppManager.getApiKey(context)
+            apiKey = AppManager.getApiKey()
             AppManager.favoriteCitiesFlow(context).collect { _favoriteCities.value = it }
         }
     }
@@ -42,7 +42,7 @@ class WeatherViewModel @Inject constructor(
         _weather.value = Resource.Loading()
         viewModelScope.launch {
             try {
-                val key = apiKey ?: AppManager.getApiKey(context).also { apiKey = it }
+                val key = apiKey ?: AppManager.getApiKey().also { apiKey = it }
                 if (key.isNullOrBlank()) {
                     _weather.value = Resource.Error("Missing API key. Add it in settings.")
                     return@launch

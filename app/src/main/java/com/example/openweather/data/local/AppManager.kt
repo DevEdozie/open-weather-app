@@ -20,7 +20,7 @@ object AppManager {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
 
 
-    suspend fun getApiKey(context: Context): String? {
+    fun getApiKey(): String? {
         val stored = BuildConfig.OPENWEATHER_API_KEY.takeIf { it.isNotBlank() }
         return stored
     }
