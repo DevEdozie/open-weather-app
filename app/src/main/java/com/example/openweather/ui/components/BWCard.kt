@@ -72,7 +72,7 @@ fun WeatherHero(
     }
 }
 
-// Optional helpers for common chips
+
 @Composable fun TempChip(v: String, m: Modifier = Modifier) =
     MetricChip(Icons.Outlined.Thermostat, "Feels", v, m)
 

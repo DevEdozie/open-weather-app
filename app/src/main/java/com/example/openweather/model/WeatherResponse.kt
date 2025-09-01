@@ -8,7 +8,7 @@ data class WeatherResponse(
     val wind: Wind,
     val clouds: Clouds,
     val name: String,
-    @SerializedName("message") val message: String? = null, // <-- add
+    @SerializedName("message") val message: String? = null,
     @SerializedName("cod") val cod: String? = null
 )
 
