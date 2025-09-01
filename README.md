@@ -17,9 +17,9 @@ A clean MVVM weather app that fetches current conditions from OpenWeather and le
 |-----------------------------|---|---|
 | ![Splash](art/screenshots/app_splash_screen_ic.jpg) | ![Home Empty](art/screenshots/empty_city_input_ic.jpg) | ![Home Non-Favorite](art/screenshots/city_input_ic.jpg) |
 
-| Detail | Home (favorite chip) | Home (favorite typed) |
-|---|---|---|
-| ![Detail](art/screenshots/weather_detail_ic.jpg) | ![Fav Chip](art/screenshots/saved_city_input_ic.jpg) | ![Fav Typed](art/screenshots/saved_city_detail_ic.jpg) |
+| Detail | Home (favorite chip) | Home (favorite typed)                                        |
+|---|---|--------------------------------------------------------------|
+| ![Detail](art/screenshots/weather_detail_ic.jpg) | ![Fav Chip](art/screenshots/saved_city_input_ic.jpg) | ![Detail Favorite](art/screenshots/saved_city_detail_ic.jpg) |
 
 ## 🧱 Architecture
 
