@@ -58,6 +58,10 @@ android {
         compose = true
         buildConfig = true
     }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true // for Robolectric/DataStore tests
+    }
 }
 
 dependencies {
